@@ -19,6 +19,7 @@ No need of python and its dependences. (Exe in dist folder).
 * output(P,c): use the solution c of P, as appropriate to the application.
 
 #### Use
+---
 [Download](https://github.com/AHardReset/Sudoku-CLI/releases/download/1.0/sudoku_cli.exe "Download file") the installer, execute and go to dist folder to execute **or** clone and use Sudoku methods.
 
 ##### Future implementations
