@@ -1,14 +1,24 @@
 class Sudoku:
-    def __init__(self, board:list = []) -> None:
+    def __init__(self, board:list[list] = []) -> None:
+        """Init the Sudoku with a known board or generate a new one.
+
+        Args:
+            board (list[list], optional): Board to init the Sudoku. Defaults to [].
+        """
         if board == []:
             self.board = self.generate_board()
         else:
             self.board = board
 
     @staticmethod
-    def generate_board():
-        base  = 3
-        side  = base*base
+    def generate_board() -> list[list]:
+        """Generates a sudoku board
+
+        Returns:
+            list[list]: Sudoku board generated
+        """
+        base = 3
+        side = base*base
 
         # pattern for a baseline valid solution
         def pattern(r,c): return (base*(r%base)+r//base+c)%side
@@ -31,6 +41,16 @@ class Sudoku:
         return board
 
     def is_valid(self, num:int, pos:tuple) -> bool:
+        """Returns if a number is valid to be placed in the (pos)ition
+        in terms of Sudoku rules.
+
+        Args:
+            num (int): Candidate number
+            pos (tuple): Position (2D) in board
+
+        Returns:
+            bool: True if is valid under Sudoku rules
+        """
         for i in range(len(self.board[0])):
             if self.board[pos[0]][i] == num and pos[1] != i:
                 return False
@@ -49,6 +69,12 @@ class Sudoku:
         return True
 
     def find_empty(self)-> tuple:
+        """Finds the next empty (zero) position in the board.
+
+        Returns:
+            tuple: Position of the next zero in the board. (-1, -1)
+            if there's no exists.
+        """
         for i in range(len(self.board)):
             for j in range(len(self.board[0])):
                 if self.board[i][j] == 0:
@@ -56,6 +82,13 @@ class Sudoku:
         return (-1, -1)
 
     def solve(self) -> bool:
+        """Recursive method to solve a Sudoku puzzle with
+        the Backtracking algorithm.
+
+        Returns:
+            bool: True if the board was solved. False if is
+            not posible.
+        """
         find = self.find_empty()
         if find == (-1, -1):
             return True
@@ -68,10 +101,15 @@ class Sudoku:
                 if self.solve():
                     return True
                 self.board[row][col] = 0
-        return False
-        
+        return False 
         
     def __str__(self) -> str:
+        """Str representation of the board. Intended for the print()
+        python function
+
+        Returns:
+            str: String representation of the Sudoku board.
+        """
         print_str = ""
         for i in range(len(self.board)):
             if i % 3 == 0 and i != 0:
@@ -83,17 +121,10 @@ class Sudoku:
 
                 print_str += str(self.board[i][j])
                 print_str += "\n" if j == len(self.board[0]) -1 else " "
-                    
-                    
         return print_str
 
-
-        #return super().__str__()
-
-
-
-
 """
+Test board.
 board = [
             [7,8,0,4,0,0,1,2,0],
             [6,0,0,0,7,5,0,0,9],
