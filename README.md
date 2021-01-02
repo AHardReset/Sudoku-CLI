@@ -3,6 +3,7 @@
 ### Sudoku_CLI is a portfolio project in which I:
 * Implement the [Backtracking Algorithm](https://en.wikipedia.org/wiki/Backtracking "Wikipedia Article") to solve a Sudoku puzzle.
 * Programaticaly create a Sudoku Puzzle.
+* Testing with unitest
 * Implementation of a [windows .exe](https://github.com/AHardReset/Sudoku-CLI/releases/download/1.0/sudoku_cli.exe "Download file") file for Installling.
 No need of python and its dependences. (Exe in dist folder).
 <p align="center">
